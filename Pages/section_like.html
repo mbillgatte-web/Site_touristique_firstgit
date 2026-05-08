@@ -1,0 +1,168 @@
+
+
+
+
+  <!-- Inclusion de Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Inclusion de Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    section {
+      padding: 60px 0;
+    }
+    h2 {
+      font-weight: bold;
+      color: #343a40;
+    }
+    /* Style pour les cartes de réservation */
+    .card {
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative; /* Pour positionner le bouton like */
+      background: #fff;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+    }
+    .card-img-top {
+      display: block;
+      width: 100%;
+      height: auto;
+      box-shadow: 10px 30px 50px rgba(0, 0, 0, 0.1);
+    }
+    /* Bouton Like en overlay sur l'image */
+    .like-button {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      padding: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .like-button:hover {
+      transform: scale(1.1);
+    }
+    .like-button.liked i {
+      color: #ff0606e0;
+    }
+    .card-title {
+      font-size: 1.5rem;
+      color: #343a40;
+    }
+    .btn-custom {
+      background-color: #225dff;
+      color: #fff;
+      font-size: 1rem;
+      border: none;
+      transition: background-color 0.3s;
+      margin-top: 10px;
+    }
+    .btn-custom:hover {
+      background-color:#225dff;
+    }
+  </style>
+
+  <section class="container">
+    <h2 class="text-center mb-4">Reservation les plus aimées</h2>
+    <p class="text-center">Découvrez les souveneirs laisser par nos clients apres leur reservation. Merci de voyager avec Touristique !</p>
+    
+    <div class="row">
+      <!-- Carte 1 -->
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm">
+          <!-- Image et bouton like -->
+          <img src="../Image/Fonds/Plage 1 .jpg" class="card-img-top" alt="Image de Paris">
+          <div class="like-button" onclick="toggleLike(this)">
+            <i class="bi bi-heart"></i>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Vers de nouveaux horizons !</h5>
+            <!-- Bouton pour afficher/masquer les détails -->
+            <a class="btn btn-custom" data-bs-toggle="collapse" href="#collapseCard1" role="button" aria-expanded="false" aria-controls="collapseCard1">
+              Voir les détails
+            </a>
+            <!-- Zone collapse contenant les détails masqués -->
+            <div class="collapse mt-3" id="collapseCard1">
+              <p class="card-text">
+                <strong>Destination :</strong> Kribi<br>
+                <strong>Dates :</strong> 12 au 19 avril 2025
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte 2 -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <img src="../Image/Fonds/Plage 1 .jpg" class="card-img-top" alt="Image des Maldives">
+          <div class="like-button" onclick="toggleLike(this)">
+            <i class="bi bi-heart"></i>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Le rêve d'un coucher de soleil parfait !</h5>
+            <a class="btn btn-custom" data-bs-toggle="collapse" href="#collapseCard2" role="button" aria-expanded="false" aria-controls="collapseCard2">
+              Voir les détails
+            </a>
+            <div class="collapse mt-3" id="collapseCard2">
+              <p class="card-text">
+                <strong>Destination :</strong> Bafoussam <br>
+                <strong>Dates :</strong> 20 au 25 Janvier 2025
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte 3 -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <img src="../Image/Fonds/Plage 1 .jpg" class="card-img-top" alt="Image de Rome">
+          <div class="like-button" onclick="toggleLike(this)">
+            <i class="bi bi-heart"></i>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Un voyage dans l'éternité</h5>
+            <a class="btn btn-custom" data-bs-toggle="collapse" href="#collapseCard3" role="button" aria-expanded="false" aria-controls="collapseCard3">
+              Voir les détails
+            </a>
+            <div class="collapse mt-3" id="collapseCard3">
+              <p class="card-text">
+                <strong>Destination :</strong> Douala<br>
+                <strong>Dates :</strong> 5 au 10 juin 2024
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Inclusion du bundle Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Script pour le bouton Like -->
+  <script>
+    function toggleLike(button) {
+      button.classList.toggle('liked');
+      var icon = button.querySelector('i');
+      if (button.classList.contains('liked')) {
+        icon.classList.remove('bi-heart');
+        icon.classList.add('bi-heart-fill');
+      } else {
+        icon.classList.remove('bi-heart-fill');
+        icon.classList.add('bi-heart');
+      }
+    }
+  </script>
+

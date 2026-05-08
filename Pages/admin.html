@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page d'accueil - Vidéo introductive</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+    /* Conteneur de la page de couverture avec le bouton */
+    #cover-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      color: #fff;
+    }
+    .enter-button {
+      padding: 15px 30px;
+      font-size: 20px;
+      background-color: #fff;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    /* Conteneur de la vidéo, initialement masqué */
+    #video-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      z-index: 100;
+    }
+    #splashVideo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <!-- Page de couverture avec bouton -->
+  <div id="cover-container">
+    <button class="enter-button" onclick="playSplashVideo();">
+      Entrer sur le site
+    </button>
+  </div>
+
+  <!-- Conteneur de la vidéo plein écran -->
+  <div id="video-container">
+    <video id="splashVideo" autoplay muted>
+      <!-- Remplacez "splash.mp4" par le chemin de votre vidéo -->
+      <source src="../Image/Logovideo.mp4" type="video/mp4">
+      Votre navigateur ne supporte pas la vidéo HTML5.
+    </video>
+  </div>
+
+  <script>
+    function playSplashVideo() {
+      // Masquer le conteneur de couverture et afficher celui de la vidéo
+      document.getElementById('cover-container').style.display = "none";
+      document.getElementById('video-container').style.display = "block";
+
+      var video = document.getElementById('splashVideo');
+
+      // Écouter l'événement "ended" pour rediriger une fois la vidéo terminée
+      video.onended = function() {
+        window.location.href = "pagedacc.php"; // Redirige vers la page d'accueil
+      };
+
+      // Vérifier que la vidéo se lance (utile en cas de restrictions d'autoplay)
+      video.play().catch(function(error){
+        console.error("La vidéo n'a pas pu être lue automatiquement :", error);
+      });
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

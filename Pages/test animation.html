@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Déclaration d'Amour – Chapitres</title>
+  <style>
+    /* Contexte général romantique */
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffe6f0, #ffb3c1);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+    /* Chaque chapitre est contenu dans une section centrée de 600×600 px */
+    .chapter {
+      display: none;
+      width: 600px;
+      height: 600px;
+      margin: 20px auto;
+      background: rgba(255,255,255,0.9);
+      border: 2px solid #eee;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* La section visible active la classe 'visible' */
+    .visible {
+      display: block;
+      animation: fadeIn 1s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    /* Style pour les canevas */
+    canvas {
+      display: block;
+      background: transparent;
+    }
+    /* Conteneur de cœurs */
+    .heart-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 600px;
+      height: 600px;
+      pointer-events: none;
+    }
+    /* Styles de base pour chaque petit cœur */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(-45deg) scale(0);
+      animation: pop 0.5s forwards;
+    }
+    .heart:before, .heart:after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart:before { top: -10px; left: 0; }
+    .heart:after  { left: 10px; top: 0; }
+    @keyframes pop {
+      to { transform: rotate(-45deg) scale(1); }
+    }
+    /* Pour les cœurs centraux, une couleur plus claire */
+    .heart.center {
+      background: #ffb3b3;
+    }
+    .heart.center:before,
+    .heart.center:after { background: #ffb3b3; }
+    /* Style du texte de chaque chapitre */
+    .chapter-text {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      right: 20px;
+      text-align: center;
+      font-size: 20px;
+      color: #333;
+    }
+    /* Bouton de navigation entre chapitres */
+    .next-button {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      background: #e60000;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background 0.3s;
+    }
+    .next-button:hover {
+      background: #b30000;
+    }
+  </style>
+</head>
+<body>
+  <!-- CHAPITRE 1 : Le début de l'histoire – l'homme qui attend l'amour -->
+  <section id="chapter1" class="chapter visible">
+    <!-- Canevas pour dessiner l'homme (effet tracé à la main) -->
+    <canvas id="canvasMan" width="600" height="600"></canvas>
+    <!-- Conteneur pour l'animation des cœurs -->
+    <div id="heartContainer1" class="heart-container"></div>
+    <!-- Texte romantique -->
+    <div class="chapter-text" id="chapter1Text">
+      Il était une fois un cœur qui ne demandait qu'à aimer...
+    </div>
+    <!-- Bouton pour passer au chapitre suivant -->
+    <button class="next-button" id="next1">Découvrir l'amour</button>
+  </section>
+  
+  <!-- CHAPITRE 2 : La rencontre – la femme approche -->
+  <section id="chapter2" class="chapter">
+    <!-- Un canevas pour la scène qui combine le bonhomme (principe rappelé) et la femme qui marche -->
+    <canvas id="canvasStory" width="600" height="600"></canvas>
+    <div id="heartContainer2" class="heart-container"></div>
+    <div class="chapter-text" id="chapter2Text">
+      Puis vint l'instant magique où deux âmes se rapprochent...
+    </div>
+    <button class="next-button" id="next2">Découvrir l'amour</button>
+  </section>
+  
+  <!-- CHAPITRE 3 : La déclaration – le message d'amour -->
+  <section id="chapter3" class="chapter">
+    <div class="chapter-text" id="chapter3Text">
+      "I Love You" – Notre histoire d'amour continue...
+    </div>
+    <button class="next-button" id="next3">Fin de l'histoire</button>
+  </section>
+  
+  <script>
+    // Fonction de navigation entre chapitres
+    function showChapter(chapterId) {
+      document.querySelectorAll('.chapter').forEach(chap => chap.classList.remove('visible'));
+      document.getElementById(chapterId).classList.add('visible');
+    }
+    
+    /* ===============================
+       Chapitre 1 : Dessin de l'homme
+       =============================== */
+    function drawMan() {
+      const canvas = document.getElementById("canvasMan");
+      const ctx = canvas.getContext("2d");
+      ctx.strokeStyle = "black";
+      ctx.lineWidth = 3;
+      ctx.lineCap = "round";
+      
+      // Simuler un dessin "à la main" avec des délais progressifs
+      setTimeout(() => {
+        // Dessiner la tête
+        ctx.beginPath();
+        ctx.arc(300, 150, 50, 0, Math.PI * 2);
+        ctx.stroke();
+      }, 500);
+      
+      setTimeout(() => {
+        // Dessiner les yeux et le sourire
+        ctx.beginPath();
+        ctx.arc(280, 140, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(320, 140, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(300, 160, 20, 0, Math.PI, false);
+        ctx.stroke();
+      }, 1000);
+      
+      setTimeout(() => {
+        // Dessiner le corps
+        ctx.beginPath();
+        ctx.moveTo(300, 200);
+        ctx.lineTo(300, 350);
+        ctx.stroke();
+      }, 1500);
+      
+      setTimeout(() => {
+        // Dessiner les bras
+        ctx.beginPath();
+        ctx.moveTo(300, 230);
+        ctx.lineTo(250, 280);
+        ctx.moveTo(300, 230);
+        ctx.lineTo(350, 280);
+        ctx.stroke();
+      }, 2000);
+      
+      setTimeout(() => {
+        // Dessiner les jambes
+        ctx.beginPath();
+        ctx.moveTo(300, 350);
+        ctx.lineTo(270, 450);
+        ctx.moveTo(300, 350);
+        ctx.lineTo(330, 450);
+        ctx.stroke();
+      }, 2500);
+      
+      // Après le dessin, lancer l'animation des cœurs
+      setTimeout(() => {
+        showHearts("heartContainer1", 20, 10, 300, 300);
+      }, 3000);
+    }
+    
+    // Fonction pour faire apparaître les cœurs séquentiellement
+    function showHearts(containerID, totalHearts, scale, centerX, centerY) {
+      const container = document.getElementById(containerID);
+      for (let i = 0; i < totalHearts; i++) {
+        setTimeout(() => {
+          let t = (i / totalHearts) * 2 * Math.PI;
+          let x = centerX + scale * (16 * Math.pow(Math.sin(t), 3));
+          let y = centerY - scale * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+          const heart = document.createElement("div");
+          heart.className = "heart";
+          heart.style.left = (x - 10) + "px";
+          heart.style.top = (y - 10) + "px";
+          container.appendChild(heart);
+        }, i * 150);
+      }
+      // Après la formation du grand cœur, faire apparaître des cœurs plus clairs au centre
+      if (containerID === "heartContainer1") {
+        setTimeout(() => {
+          showCenterHearts(containerID, 10, 1, centerX, centerY);
+        }, totalHearts * 150 + 500);
+      }
+    }
+    
+    // Fonction pour faire apparaître des cœurs plus clairs au centre
+    function showCenterHearts(containerID, total, scale, centerX, centerY) {
+      const container = document.getElementById(containerID);
+      for (let i = 0; i < total; i++) {
+        setTimeout(() => {
+          let offsetX = (Math.random() - 0.5) * 40;
+          let offsetY = (Math.random() - 0.5) * 40;
+          const heart = document.createElement("div");
+          heart.className = "heart center";
+          heart.style.left = (centerX + offsetX - 10) + "px";
+          heart.style.top = (centerY + offsetY - 10) + "px";
+          container.appendChild(heart);
+        }, i * 150);
+      }
+    }
+    
+    /* ====================================
+       Chapitre 2 : Rencontre – La femme approche
+       ==================================== */
+    function animateScene() {
+      const canvas = document.getElementById("canvasStory");
+      const ctx = canvas.getContext("2d");
+      let womanX = 680; // point de départ (hors de l'écran à droite)
+      const targetX = 380; // position finale proche de l'homme (la silhouette reste en arrière-plan)
+      const womanY = 150;
+      
+      // Pour maintenir un arrière-plan continuel, on redessine une silhouette simplifiée de l'homme
+      function drawBackground() {
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(300, 150, 50, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      
+      function drawScene() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBackground();
+        drawWoman(ctx, womanX, womanY, 0.7);
+      }
+      
+      function step() {
+        drawScene();
+        if (womanX > targetX) {
+          womanX -= 2; // vitesse de déplacement
+          requestAnimationFrame(step);
+        } else {
+          // Une fois la femme arrivée, animer des cœurs dans ce chapitre
+          setTimeout(() => {
+            showHearts("heartContainer2", 20, 10, 300, 300);
+            setTimeout(() => {
+              showCenterHearts("heartContainer2", 10, 1, 300, 300);
+            }, 20 * 150 + 500);
+          }, 500);
+        }
+      }
+      requestAnimationFrame(step);
+    }
+    
+    // Fonction pour dessiner la femme (dessinée dans un style simplifié et « fait main »)
+    function drawWoman(ctx, x, y, scale) {
+      ctx.strokeStyle = "black";
+      ctx.lineWidth = 2;
+      ctx.lineCap = "round";
+      // Tête
+      ctx.beginPath();
+      ctx.arc(x, y, 20 * scale, 0, Math.PI * 2);
+      ctx.fillStyle = "#ffe0bd";
+      ctx.fill();
+      ctx.stroke();
+      // Cheveux (arc simple)
+      ctx.beginPath();
+      ctx.arc(x, y, 20 * scale, Math.PI, 2 * Math.PI);
+      ctx.fillStyle = "#a52a2a";
+      ctx.fill();
+      // Yeux
+      ctx.beginPath();
+      ctx.arc(x - 7 * scale, y - 5 * scale, 2 * scale, 0, Math.PI * 2);
+      ctx.fillStyle = "black";
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(x + 7 * scale, y - 5 * scale, 2 * scale, 0, Math.PI * 2);
+      ctx.fill();
+      // Sourire
+      ctx.beginPath();
+      ctx.arc(x, y + 3 * scale, 8 * scale, 0, Math.PI, false);
+      ctx.stroke();
+      // Corps
+      ctx.beginPath();
+      ctx.moveTo(x, y + 20 * scale);
+      ctx.lineTo(x, y + 60 * scale);
+      ctx.stroke();
+      // Bras
+      ctx.beginPath();
+      ctx.moveTo(x, y + 10 * scale);
+      ctx.lineTo(x - 25 * scale, y + 30 * scale);
+      ctx.moveTo(x, y + 10 * scale);
+      ctx.lineTo(x + 25 * scale, y + 30 * scale);
+      ctx.stroke();
+      // Jupe
+      ctx.beginPath();
+      ctx.moveTo(x, y + 60 * scale);
+      ctx.lineTo(x - 20 * scale, y + 80 * scale);
+      ctx.lineTo(x + 20 * scale, y + 80 * scale);
+      ctx.closePath();
+      ctx.fillStyle = "#ff69b4";
+      ctx.fill();
+      ctx.stroke();
+    }
+    
+    // Gestion des clics sur les boutons de navigation
+    document.getElementById("next1").addEventListener("click", function() {
+      // Optionnel : nettoyer les cœurs du chapitre 1
+      document.getElementById("heartContainer1").innerHTML = "";
+      showChapter("chapter2");
+      setTimeout(animateScene, 500);
+    });
+    
+    document.getElementById("next2").addEventListener("click", function() {
+      showChapter("chapter3");
+    });
+    
+    document.getElementById("next3").addEventListener("click", function() {
+      alert("Merci d'avoir partagé cette belle histoire d'amour !");
+    });
+    
+    // Lancer le chapitre 1 dès le chargement
+    window.onload = function() {
+      drawMan();
+    };
+  </script>
+</body>
+</html>

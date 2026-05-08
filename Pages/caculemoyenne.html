@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    table{
+        border-collapse: collapse ; }
+
+        th,tr,td {border: 1px black solid ;}
+</style>
+
+<body>
+
+
+    <h1>Hello World !!! </h1>
+
+
+
+    <table>
+         <caption>Titre du tableau</caption>
+
+         <tr>
+            <th>/</th>
+            <th>/</th>
+            <th colspan="2">Matiere</th>
+            <th>/</th>
+         </tr>
+
+         <tr>
+            <td>/</td>
+            <td>/</td>
+            <td>Francais</td>
+            <td>Anglais</td>
+            <td>MOYENNE</td>
+         </tr>
+         <tr>
+            <td rowspan="3">eleve</td>
+            <td>lucie</td>
+            <td id="F" >12</td>
+            <td id="A" >14</td>
+            <td id="M" ></td>
+
+        </tr>
+        <tr>    
+            
+            <td>claire</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>    
+            
+            <td>lydle</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+
+
+    </table>
+
+
+
+
+
+    <script>
+        note1=document.getElementById("F").textContent;
+        note2=document.getElementById("A").textContent;
+
+      note1 = parseInt(note1) ; 
+      note2= parseInt(note2) ; 
+
+      moy =  note1 + note2 ; 
+
+        document.getElementById("M").textContent= moy ; 
+       
+    
+   </script>
+    
+</body>
+</html>
