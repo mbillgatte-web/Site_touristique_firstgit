@@ -1,4 +1,4 @@
-# Application Web Touristique
+# Application Web Touristique Bill
 
 Bienvenue sur le dépôt du projet de site touristique. Ce projet est une application web dynamique développée en HTML, CSS, JavaScript et PHP, avec une base de données MySQL.
 
