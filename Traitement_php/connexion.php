@@ -17,11 +17,9 @@ session_start();
   
     if(isset($_POST['SeConnecter']))
         {    
-          
-                 extract($_POST);//ceci permet de faire ce qui est en dessous pour chaque elts nom,prenom... une seule fois.
-          
-          //  echo $nom ; 
-          //   echo $prenom = $_POST['prenom'];
+            // Récupération explicite des variables (évite extract qui est dangereux)
+            $nom_user = isset($_POST['nom_user']) ? $_POST['nom_user'] : '';
+            $password = isset($_POST['password']) ? $_POST['password'] : '';
         
 
 
@@ -44,7 +42,6 @@ session_start();
 
             if ($resultat != null)
                 {    
-                  
                   $_SESSION['nom']= $resultat['nom'];
                   $_SESSION['prenom']= $resultat['prenom'];
                   $_SESSION['password']= $resultat['pwd'];
@@ -53,45 +50,25 @@ session_start();
                    if ( $resultat['nom']== 'Admin' )
                         {
                           header("Location: ../Dashboard/index.html");
-                          echo  " <script>
-                          alert('Bienvenue . !!!!  ');
-                          </script>" ;
+                          exit();
                         }
                     else
                       { 
-                         header("Location: ../Pages/pagedacc.php");  }
-        
-                
-
-
-                  echo  " <script>
-                  alert('Bienvenue . !!!!  ');
-                  </script>" ;
-                       
+                          header("Location: ../Pages/pagedacc.php");  
+                          exit();
+                      }
                 }
-          else
-          {
-            echo  " <script>
-            alert('Access  refuse, creer votre compte. !!!!  ');
-            </script>" ;
-
-            header("Location: ../Pages/Creation de compte.php");  
-             
-          }
-            //  header("Location: pagedacc.html");
-
-         
-
-          exit();  
+            else
+                {
+                    // Utilisateur non trouvé, rediriger vers la création de compte ou afficher une erreur
+                    header("Location: ../Pages/Creation de compte.php");  
+                    exit();
+                }
              }
               catch(PDOException $e)
                 {
-                     echo"Echec de lors de la verification  dans  la BD:".$e->getMessage() ;
+                     echo "Echec de lors de la verification  dans  la BD:".$e->getMessage() ;
                 }
-
-                echo "hello word" ; 
-
-       
         }
     
 

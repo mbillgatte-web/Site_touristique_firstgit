@@ -8,15 +8,10 @@
   <link href="../css/fond1.css" rel="stylesheet" />
   <link href="../css/fond2.css" rel="stylesheet" />
  
-  <title >Page de connexion </title>
- 
-</head> 
-
-
-<style>
-
- /* Conteneur de la barre de chargement (masqué par défaut) */
- #loadingContainer {
+  <title>Page de connexion</title>
+  <style>
+    /* Conteneur de la barre de chargement (masqué par défaut) */
+    #loadingContainer {
       display: none;
       margin-top: 20px;
     }
@@ -51,9 +46,8 @@
       from { width: 0%; }
       to { width: 100%; }
     }
-
-</style>
-
+  </style>
+</head>
 
 
 
@@ -68,8 +62,8 @@
       </div>
     </div>
   </div> <br><br>
-  <main class="main-content  mt-0" style="width: 5000px;">
-    <div class="page-header align-items-start min-vh-100" style="background-image: url('');">
+  <main class="main-content mt-0">
+    <div class="page-header align-items-start min-vh-100">
       <span class="mask bg-gradient-dark opacity-6"></span>
       <div class="container my-auto">
         <div class="row">
@@ -107,7 +101,7 @@
                   </div>
                   <div class="text-center">
                     <input type="reset"  class="btn  w-100 my-4 mb-2" value="EFFACER">
-                    <input type="submit" value="Se Connecter" name= "SeConnecter" id="SeConnecter" class="btn bg-gradient-dark w-100 my-4 mb-2">
+                    <input type="submit" value="Se Connecter" id="btnSeConnecter" class="btn bg-gradient-dark w-100 my-4 mb-2">
                     <input type="hidden" name="SeConnecter" value="true">
                   </div>
                  
@@ -148,13 +142,10 @@
 
 
   <script>
-     // Écoute de la soumission du formulaire
+    // Écoute de la soumission du formulaire
     document.getElementById('loginForm').addEventListener('submit', function(e) {
-      // Empêcher la soumission immédiate pour afficher la barre de chargement
-      e.preventDefault();
-      
       // Désactiver le bouton pour éviter plusieurs clics
-      document.getElementById('SeConnecter').disabled = true;
+      document.getElementById('btnSeConnecter').disabled = true;
       
       // Afficher le conteneur de chargement
       var loadingContainer = document.getElementById('loadingContainer');
@@ -163,12 +154,6 @@
       // Lancer l'animation de la barre de chargement
       var loadingBar = document.getElementById('loadingBar');
       loadingBar.classList.add('animate-loading');
-      
-      // Attendre 5 secondes avant de soumettre le formulaire normalement
-      setTimeout(() => {
-        // Lancer la soumission du formulaire via l'attribut method/action
-        e.target.submit();
-      }, 5000);
     });
   </script>
 
